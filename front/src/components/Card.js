@@ -24,7 +24,7 @@ function Card({ pdt, key }) {
           <a
             href={pdt.url}
             target='_blank'
-            rel="noreferrer"
+            rel="noopener"
           >
             {pdt.brand}
           </a>
