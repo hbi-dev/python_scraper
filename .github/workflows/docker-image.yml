@@ -6,22 +6,27 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  PROJECT_ID: ${{ secrets.PROJECT_ID }}
+  CLOUDSDK_CORE_PROJECT: ${{ secrets.PROJECT_ID }}
+
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Login to Google Cloud Registry
-        uses: docker/login-action@v1
+      - name: Retrieve the repository name
+        run: echo ::set-env name=REPOSITORY_NAME::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')
+        shell: bash
+
+      - name: setup gcloud CLI
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
-          registry: gcr.io
-          username: _json_key
-          password: ${{ secrets.GCLOUD_REGISTRY_KEY }}
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ secrets.PROJECT_ID }}
 
       - name: Build and push backend image
         uses: docker/build-push-action@v2
