@@ -26,8 +26,8 @@ jobs:
 
       - name: Build docker images
         run: |- 
-          docker build -f back/Dockerfile -t scrappy_back:latest .
-          docker build -f front/Dockerfile  -t scrappy_front:latest .
+          docker build -f ./back/Dockerfile -t scrappy_back:latest .
+          docker build -f ./front/Dockerfile  -t scrappy_front:latest .
 
       - name: Configure docker client
         run: |-
