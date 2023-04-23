@@ -15,6 +15,7 @@ COPY . .
 
 # Build the React app
 RUN npm run build
+COPY ./front/public/index.html ./build/
 
 # Expose port 3000 for the React app to listen on
 EXPOSE 3000
