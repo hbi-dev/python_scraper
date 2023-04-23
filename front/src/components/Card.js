@@ -23,8 +23,8 @@ function Card({ pdt, key }) {
         <div className='model'>
           <a
             href={pdt.url}
-            target='_blank'
-            rel="noopener"
+            // eslint-disable-next-line
+            target="_blank" rel="noreferrer"
           >
             {pdt.brand}
           </a>
