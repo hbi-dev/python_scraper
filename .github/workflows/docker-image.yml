@@ -42,7 +42,7 @@ jobs:
           docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_back:latest
           docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_back:$GIT_TAG
 
-      - name: Push Docker front Image to Artifact Registry
+      - name: Push Docker front1 Image to Artifact Registry
         env:
           GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |-

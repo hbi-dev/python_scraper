@@ -11,14 +11,13 @@ COPY ./front/package*.json ./
 RUN npm install
 
 # Copy the rest of the application code into the container at /app
-COPY ../../../../.Trash .
+COPY . .
 
 # Build the React app
 RUN npm run build
-COPY ./front/public/index.html ./build/
 
 # Expose port 3000 for the React app to listen on
 EXPOSE 3000
 
 # Start the React app when the container is started
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "dev" ]
