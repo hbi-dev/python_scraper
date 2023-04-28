@@ -5,7 +5,7 @@ FROM python:3.9.16-bullseye
 WORKDIR /app
 
 # Copy the requirements file into the container at /app
-COPY /back/requirements.txt /app
+COPY ./back/requirements.txt /app
 
 # Install any needed packages specified in requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
