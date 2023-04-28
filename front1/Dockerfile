@@ -11,7 +11,7 @@ COPY ./front/package*.json ./
 RUN npm install
 
 # Copy the rest of the application code into the container at /app
-COPY ../../../../.Trash .
+COPY . .
 
 # Build the React app
 RUN npm run build
