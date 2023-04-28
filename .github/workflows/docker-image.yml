@@ -26,8 +26,8 @@ jobs:
 
       - name: Build docker images
         run: |- 
-          docker build -f ./back/Dockerfile -t scrappy_back:latest .
-          docker build -f ./front/Dockerfile  -t scrappy_front:latest .
+          docker build -f ./back/Dockerfile -t scrappy_back:v1.0.0 .
+          docker build -f ./front/Dockerfile  -t scrappy_front:v1.0.0 .
 
       - name: Configure docker client
         run: |-
@@ -37,16 +37,16 @@ jobs:
         env:
           GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |-
-          docker tag $IMAGE_NAME:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_back:latest
-          docker tag $IMAGE_NAME:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_back:$GIT_TAG
-          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_back:latest
+          docker tag $IMAGE_NAME:v1.0.0 europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_back:v1.0.0
+          docker tag $IMAGE_NAME:v1.0.0 europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_back:$GIT_TAG
+          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_back:v1.0.0
           docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_back:$GIT_TAG
 
       - name: Push Docker front1 Image to Artifact Registry
         env:
           GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |-
-          docker tag $IMAGE_NAME:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_front:latest
-          docker tag $IMAGE_NAME:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_front:$GIT_TAG
-          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_front:latest
+          docker tag $IMAGE_NAME:v1.0.0 europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_front:v1.0.0
+          docker tag $IMAGE_NAME:v1.0.0 europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_front:$GIT_TAG
+          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_front:v1.0.0
           docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/scrappy_front:$GIT_TAG
