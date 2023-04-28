@@ -26,7 +26,7 @@ jobs:
           password: ${{ secrets.GCLOUD_REGISTRY_KEY }}
 
       - name: Build docker images
-        run: |
+        run: |- 
           docker build -f ./back/Dockerfile -t $IMAGE_NAME-back:v1.0.0 ./back
           docker build -f ./front/Dockerfile -t $IMAGE_NAME-front:v1.0.0 ./front
 
