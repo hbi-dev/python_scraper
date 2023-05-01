@@ -36,8 +36,8 @@ jobs:
         env:
           GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |-
-          docker tag python_scraper_backend europe-west1-docker.pkg.dev/$PROJECT_ID/sneaker-lab/$IMAGE_NAME-back:$GIT_TAG
-          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/sneaker-lab/$IMAGE_NAME-back:$GIT_TAG
+          docker tag python_scraper_backend europe-west1-docker.pkg.dev/$PROJECT_ID/sneaker-lab/$IMAGE_NAME-back-$GIT_TAG
+          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/sneaker-lab/$IMAGE_NAME-back-$GIT_TAG
 
       - name: Push Docker front Image to Artifact Registry
         env:
