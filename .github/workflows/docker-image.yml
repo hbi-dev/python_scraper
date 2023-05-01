@@ -14,6 +14,7 @@ jobs:
     env:
       PROJECT_ID: hbi-scrapper
       IMAGE_NAME: scrapper
+      GAR_URL: europe-west1-docker.pkg.dev/hbi-scrapper/sneaker-lab
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -36,8 +37,8 @@ jobs:
         env:
           GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |-
-          docker tag python_scraper_backend:latest europe-west1-docker.pkg.dev$PROJECT_ID/sneaker-lab/$IMAGE_NAME-back:v1.0.0.0-$(date +%s)
-          docker push europe-west1-docker.pkg.dev$PROJECT_ID/sneaker-lab/$IMAGE_NAME-back:v1.0.0.0-$(date +%s)
+          docker tag python_scraper_backend:latest $GAR_URL/$IMAGE_NAME-back:v1.0.0.0-$(date +%s)
+          docker push $GAR_URL/$IMAGE_NAME-back:v1.0.0.0-$(date +%s)
 
       - name: Push Docker front Image to Artifact Registry
         env:
