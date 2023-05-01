@@ -37,8 +37,8 @@ jobs:
         env:
           GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |-
-          docker tag python_scraper_backend:latest $GAR_URL/$IMAGE_NAME-back:v1.0.0.0-$(date +%s)
-          docker push $GAR_URL/$IMAGE_NAME-back:v1.0.0.0-$(date +%s)
+          docker tag python_scraper_backend:latest $GAR_URL:v1.0.0.0-$(date +%s)
+          docker push $GAR_URL:v1.0.0.0-$(date +%s)
 
       - name: Push Docker front Image to Artifact Registry
         env:
