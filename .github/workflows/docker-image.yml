@@ -36,5 +36,16 @@ jobs:
         env:
           GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |-
-          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/python_scraper_backend:latest
-          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/python_scraper_frontend:latest
+          docker tag python_scraper_backend:latest europe-west1-docker.pkg.dev/$PROJECT_ID/$IMAGE_NAME-back:v1.0.0-$(date +%s)
+          docker tag python_scraper_frontend:latest europe-west1-docker.pkg.dev/$PROJECT_ID/$IMAGE_NAME-back:$GIT_TAG
+          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/$IMAGE_NAME-back:v1.0.0-$(date +%s)
+          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/$IMAGE_NAME-back:$GIT_TAG
+
+      - name: Push Docker front Image to Artifact Registry
+        env:
+          GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+        run: |-
+          docker tag python_scraper_frontend:latest europe-west1-docker.pkg.dev/$PROJECT_ID/$IMAGE_NAME-front:v1.0.0-$(date +%s)
+          docker tag python_scraper_frontend:latest europe-west1-docker.pkg.dev/$PROJECT_ID/$IMAGE_NAME-front:$GIT_TAG
+          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/$IMAGE_NAME-front:v1.0.0-$(date +%s)
+          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/$IMAGE_NAME-front:$GIT_TAG
