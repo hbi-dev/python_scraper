@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PROJECT_ID: hbi-scrapper
-      IMAGE_NAME: scrapper
       GAR_URL: europe-west1-docker.pkg.dev/hbi-scrapper/images
     steps:
       - name: Checkout code
@@ -32,10 +31,10 @@ jobs:
         env:
           GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |-
-          docker tag python_scraper_backend:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
-          docker tag python_scraper_backend:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
-          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
-          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
+          docker tag python_scraper_backend:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/python_scraper_backend:latest
+          docker tag python_scraper_backend:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/python_scraper_backend:$GIT_TAG
+          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/python_scraper_backend:latest
+          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/python_scraper_backend:$GIT_TAG
 
       - name: Push Docker front Image to Artifact Registry
         env:
