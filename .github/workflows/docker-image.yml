@@ -25,23 +25,20 @@ jobs:
 
       - name: Configure docker client
         run: |-
-          gcloud auth configure-docker \
-          europe-west1-docker.pkg.dev --quiet
+          gcloud auth configure-docker europe-west1-docker.pkg.dev --quiet
 
       - name: Push Docker Back Image to Artifact Registry
         env:
           GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |-
-          docker tag python_scraper_backend:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/python_scraper_backend:latest
-          docker tag python_scraper_backend:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/python_scraper_backend:$GIT_TAG
-          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/python_scraper_backend:latest
-          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/python_scraper_backend:$GIT_TAG
+          docker tag python_scraper_backend:latest $GAR_URL/python_scraper_backend:latest
+          docker tag python_scraper_backend:latest $GAR_URL/python_scraper_backend:$GIT_TAG
+          docker push $GAR_URL/python_scraper_backend:latest
+          docker push $GAR_URL/python_scraper_backend:$GIT_TAG
 
       - name: Push Docker front Image to Artifact Registry
         env:
           GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |-
-          docker tag python_scraper_frontend:latest $GAR_URL:v1.0.0.0-$(date +%s)
-          docker push $GAR_URL:v1.0.0.0-$(date +%s)
-
-#scrapper@hbi-scrapper.iam.gserviceaccount.com
+          docker tag python_scraper_frontend:latest $GAR_URL/python_scraper_frontend:v1.0.0.0-$(date +%s)
+          docker push $GAR_URL/python_scraper_frontend:v1.0.0.0-$(date +%s)
