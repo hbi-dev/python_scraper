@@ -34,7 +34,6 @@ jobs:
         run: |-
 #          docker tag python_scraper_backend:latest $GAR_URL:v1.0.0.0-$(date +%s)
 #          docker push $GAR_URL:v1.0.0.0-$(date +%s)
-
           docker tag $IMAGE_NAME:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
           docker tag $IMAGE_NAME:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
           docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
