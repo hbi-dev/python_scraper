@@ -41,3 +41,5 @@ jobs:
         run: |-
           docker tag python_scraper_frontend:latest $GAR_URL:v1.0.0.0-$(date +%s)
           docker push $GAR_URL:v1.0.0.0-$(date +%s)
+
+#scrapper@hbi-scrapper.iam.gserviceaccount.com
