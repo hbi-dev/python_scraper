@@ -31,8 +31,8 @@ jobs:
         env:
           GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |-
-          docker tag python_scraper_backend:latest /europe-west1-docker.pkg.dev/hbi-scrapper/images/python-scraper-backend:latest
-          docker tag python_scraper_backend:latest /europe-west1-docker.pkg.dev/hbi-scrapper/images/python-scraper-backend:$GIT_TAG
+          docker tag python_scraper_backend:latest europe-west1-docker.pkg.dev/hbi-scrapper/images/python-scraper-backend:latest
+          docker tag python_scraper_backend:latest europe-west1-docker.pkg.dev/hbi-scrapper/images/python-scraper-backend:$GIT_TAG
           docker push europe-west1-docker.pkg.dev/hbi-scrapper/images/python-scraper-backend:latest
           docker push europe-west1-docker.pkg.dev/hbi-scrapper/images/python-scraper-backend:$GIT_TAG
 
@@ -40,7 +40,7 @@ jobs:
         env:
           GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |-
-          docker tag python_scraper_frontend:latest /europe-west1-docker.pkg.dev/hbi-scrapper/images/python_scraper_frontend:latest
-          docker tag python_scraper_frontend:latest /europe-west1-docker.pkg.dev/hbi-scrapper/images/python_scraper_frontend:$GIT_TAG
+          docker tag python_scraper_frontend:latest europe-west1-docker.pkg.dev/hbi-scrapper/images/python_scraper_frontend:latest
+          docker tag python_scraper_frontend:latest europe-west1-docker.pkg.dev/hbi-scrapper/images/python_scraper_frontend:$GIT_TAG
           docker push europe-west1-docker.pkg.dev/hbi-scrapper/images/python_scraper_frontend:latest
           docker push europe-west1-docker.pkg.dev/hbi-scrapper/images/python_scraper_frontend:$GIT_TAG
