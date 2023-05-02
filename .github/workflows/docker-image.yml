@@ -31,8 +31,6 @@ jobs:
         env:
           GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
         run: |-
-          docker tag python_scraper_backend:latest europe-west1-docker.pkg.dev/hbi-scrapper/images/python_scraper_backend:latest
-          docker tag python_scraper_backend:latest europe-west1-docker.pkg.dev/hbi-scrapper/images/python_scraper_backend:$GIT_TAG
           docker push europe-west1-docker.pkg.dev/hbi-scrapper/images/python_scraper_backend:latest
           docker push europe-west1-docker.pkg.dev/hbi-scrapper/images/python_scraper_backend:$GIT_TAG
 
