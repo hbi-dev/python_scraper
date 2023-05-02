@@ -10,7 +10,7 @@ jobs:
     env:
       PROJECT_ID: hbi-scrapper
       IMAGE_NAME: scrapper
-      GAR_URL: europe-west1-docker.pkg.dev/hbi-scrapper/sneaker-lab
+      GAR_URL: europe-west1-docker.pkg.dev/hbi-scrapper/images
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
