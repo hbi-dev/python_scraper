@@ -5,7 +5,7 @@ FROM node:current-bullseye-slim
 WORKDIR /app
 
 # Copy the package.json and package-lock.json files into the container at /app
-COPY front/package*.json ./
+COPY package*.json ./
 
 # Install any needed packages specified in package.json
 RUN npm install
@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Build the React app
-RUN yarn run build
+RUN npm run build
 
 # Expose port 3000 for the React app to listen on
 EXPOSE 3000
