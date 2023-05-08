@@ -2,18 +2,24 @@ version: "3"
 services:
   backend:
     build: back/.
+    image: backend:v1.0.0
     ports:
       - "8080:8080"
     networks:
       - mynetwork
+    container_name: backend
   frontend:
     build: front/.
+    image: frontend:v1.0.0
     ports:
       - "3000:3000"
     environment:
       - REACT_APP_API_URL=http://backend:8080
     networks:
       - mynetwork
+    container_name: frontend
+    depends_on:
+      - backend
 networks:
   mynetwork:
 #https://youtu.be/6dLHcnlPi_U
