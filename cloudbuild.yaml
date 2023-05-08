@@ -2,6 +2,6 @@
 steps:
 - name: 'docker/compose:1.19.0'
   args: ['up', '-d']
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'europe-west1-docker.pkg.dev/hbi-scrapper/images'
   args: ['tag', 'workspace_app:latest', 'europe-west1-docker.pkg.dev/hbi-scrapper/images/$REPO_NAME:$COMMIT_SHA']
 images: ['europe-west1-docker.pkg.dev/hbi-scrapper/images/$REPO_NAME:$COMMIT_SHA']
