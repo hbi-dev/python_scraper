@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
+  namespace: sneaker-lab
 spec:
   selector:
     matchLabels:
@@ -14,7 +15,14 @@ spec:
     spec:
       containers:
       - name: backend
-        image: python_scraper_backend:latest
+        image: europe-west1-docker.pkg.dev/hbi-scrapper/images/python_scraper_backend:latest
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
         ports:
         - containerPort: 8080
 ---
@@ -34,6 +42,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
+  namespace: sneaker-lab
 spec:
   selector:
     matchLabels:
@@ -46,7 +55,14 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: python_scraper_frontend:latest
+        image: europe-west1-docker.pkg.dev/hbi-scrapper/images/python_scraper_frontend:latest
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
         ports:
         - containerPort: 3000
         env:
